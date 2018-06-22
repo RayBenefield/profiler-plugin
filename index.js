@@ -42,13 +42,15 @@ export function install(engine, params) {
 
         component.worker = async function () {
             const node = arguments[0];
+            const silent = arguments[3]?arguments[3].silent:false;
+			  
             var t = window.performance.now()
 
             await pureWorker.apply(this, arguments)
 
             var elapsed = window.performance.now() - t;
 
-            if (params.editor && params.enabled)
+            if (params.editor && params.enabled && !silent)
                 params.editor.nodes.find(n => n.id === node.id).meta.elapsed = elapsed.toFixed(2);
         }
     });
