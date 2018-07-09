@@ -1,6 +1,6 @@
 import './index.sass';
 
-export function install(engine, params) {
+function install(engine, params) {
     var els = new Map();
     var enabled = params.enabled !== false;
 
@@ -68,4 +68,8 @@ export function install(engine, params) {
         }
     });
 
+}
+
+export default {
+    install
 }
