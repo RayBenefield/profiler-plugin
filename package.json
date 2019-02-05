@@ -1,8 +1,9 @@
 {
   "name": "rete-profiler-plugin",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "",
-  "main": "build/profiler-plugin.min.js",
+  "main": "build/profiler-plugin.common.js",
+  "module": "build/profiler-plugin.esm.js",
   "scripts": {
     "build": "rete --build rete.config.js",
     "build:dev": "rete --build rete.config.js --watch",
@@ -12,7 +13,7 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "rete-cli": "^0.1.0",
+    "rete-cli": "^0.5.0",
     "rollup-plugin-sass": "^0.7.2"
   }
 }
