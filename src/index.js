@@ -5,6 +5,7 @@ import './index.sass';
 function install(engine, params) {
     const els = new Map();
 
+    observe(params, 'format', params.format || 'default'); // default, tiny
     observe(params, 'count', params.count || 10);
     observe(params, 'enabled', params.enabled !== false, () => {
         els.forEach((el, node) => {
@@ -13,13 +14,12 @@ function install(engine, params) {
     });
 
     params.editor.on('rendernode', ({ el, node, component }) => {
-        const view = new View(params.enabled, el);
+        const view = new View(params, el);
 
         els.set(node, view.e);
 
         observe(node.meta, 'elapsed', [], (val) => {
-            view.updateChart(val);
-            view.setStat(val);
+            view.update(val);
         });
     });
 
